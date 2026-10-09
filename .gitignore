@@ -1,0 +1,6 @@
+# Local development artifacts (not required by GitHub Pages)
+node_modules/
+maze_solver
+*.exe
+__pycache__/
+.DS_Store

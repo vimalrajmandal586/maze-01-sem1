@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#131724" />
+    <meta
+      name="description"
+      content="Play a randomly generated maze, race your personal best, and learn how it works."
+    />
+    <title>Play the Maze — Maze / 01</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <script defer src="assets/vendor/jquery-3.7.1.min.js"></script>
+    <script defer src="assets/js/site.js"></script>
+    <script defer src="assets/js/maze.js"></script>
+    <script defer src="assets/js/game.js"></script>
+  </head>
+  <body class="play-page">
+    <div class="site-shell">
+      <header class="site-header">
+        <a class="brand" href="index.html" aria-label="Maze 01 home"
+          ><span class="brand-symbol" aria-hidden="true">↗</span
+          ><span>MAZE<span class="brand-slash">/</span>01</span></a
+        ><button
+          class="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          aria-label="Open menu"
+        >
+          <span></span><span></span>
+        </button>
+        <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+          <a href="index.html">01 / Home</a
+          ><a class="active" aria-current="page" href="play.html">02 / Play</a
+          ><a href="behind.html">03 / Behind the build</a>
+        </nav>
+        <span class="header-tag"
+          >SEM 1 FINAL PROJECT <span class="live-dot"></span
+        ></span>
+      </header>
+      <main class="game-main">
+        <div class="page-kicker">
+          <a href="index.html">← BACK TO HOME</a><span>02 / THE GAME</span>
+        </div>
+        <div class="game-heading">
+          <div>
+            <div class="eyebrow">
+              <span class="eyebrow-line"></span> THE BEST WAY TO UNDERSTAND IT
+              IS TO PLAY IT
+            </div>
+            <h1>Find your <em>way out.</em></h1>
+            <p>
+              From the green dot to the peach exit. Don't worry — every maze has
+              a way through.
+            </p>
+          </div>
+          <div class="game-heading-doodle" aria-hidden="true">
+            ↗<small>YOU GOT THIS</small>
+          </div>
+        </div>
+        <div class="game-layout">
+          <section class="game-board-panel" aria-label="Maze game">
+            <div class="board-topbar">
+              <span><span class="online-dot"></span> LIVE MAZE</span
+              ><span id="seed-label">SEED / —</span>
+            </div>
+            <div class="board-stage">
+              <canvas
+                id="maze-canvas"
+                width="600"
+                height="600"
+                role="img"
+                aria-label="Maze game board. Use arrow keys, WASD, swipe, or the direction buttons to move from the top left to the bottom right."
+              ></canvas>
+              <div id="win-overlay" class="win-overlay" hidden>
+                <div class="win-card">
+                  <span class="win-sparkle" aria-hidden="true">✳</span
+                  ><span class="small-caps">LEVEL COMPLETE</span>
+                  <h2>Nice. You<br /><em>made it out!</em></h2>
+                  <p id="win-summary"></p>
+                  <button
+                    class="button button-primary"
+                    id="play-again"
+                    type="button"
+                  >
+                    Another maze <span aria-hidden="true">↗</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="board-bottom">
+              <span><i class="legend-dot player-dot"></i> YOU</span
+              ><span><i class="legend-dot exit-dot"></i> EXIT</span
+              ><span class="board-hint">TIP: Use a hint if you're stuck ↗</span>
+            </div>
+          </section>
+          <aside class="game-sidebar" aria-label="Game controls and stats">
+            <section class="side-card side-card-level">
+              <div class="side-label">01 / CHOOSE YOUR ROUTE</div>
+              <h2>Difficulty</h2>
+              <div
+                class="difficulty-options"
+                role="group"
+                aria-label="Select difficulty"
+              >
+                <button
+                  class="difficulty active"
+                  type="button"
+                  data-level="easy"
+                  aria-pressed="true"
+                >
+                  <span>Easy</span><small>9 × 9</small></button
+                ><button
+                  class="difficulty"
+                  type="button"
+                  data-level="medium"
+                  aria-pressed="false"
+                >
+                  <span>Medium</span><small>15 × 15</small></button
+                ><button
+                  class="difficulty"
+                  type="button"
+                  data-level="hard"
+                  aria-pressed="false"
+                >
+                  <span>Hard</span><small>21 × 21</small>
+                </button>
+              </div>
+              <p class="micro-note">Switching difficulty starts a new maze.</p>
+            </section>
+            <section class="side-card">
+              <div class="side-label">02 / HOW'S IT GOING?</div>
+              <div class="stats-grid">
+                <div><span>TIME</span><strong id="timer">00:00</strong></div>
+                <div><span>STEPS</span><strong id="steps">0</strong></div>
+                <div><span>HINTS</span><strong id="hints-used">0</strong></div>
+                <div>
+                  <span>YOUR BEST <span class="best-star">✳</span></span
+                  ><strong id="best-time">—</strong>
+                </div>
+              </div>
+              <p class="micro-note">
+                The clock starts on your first move. Best times stay on this
+                browser.
+              </p>
+            </section>
+            <section class="side-card controls-card">
+              <div class="side-label">03 / MAKE A MOVE</div>
+              <div class="control-line">
+                <div class="dpad" role="group" aria-label="Movement controls">
+                  <button
+                    class="up"
+                    type="button"
+                    data-move="0"
+                    aria-label="Move up"
+                  >
+                    ↑</button
+                  ><button
+                    class="left"
+                    type="button"
+                    data-move="3"
+                    aria-label="Move left"
+                  >
+                    ←</button
+                  ><button
+                    class="down"
+                    type="button"
+                    data-move="2"
+                    aria-label="Move down"
+                  >
+                    ↓</button
+                  ><button
+                    class="right"
+                    type="button"
+                    data-move="1"
+                    aria-label="Move right"
+                  >
+                    →
+                  </button>
+                </div>
+                <div class="control-help">
+                  ARROW KEYS<br />W A S D<br />OR SWIPE<br /><span
+                    >← ↑ ↓ →</span
+                  >
+                </div>
+              </div>
+              <div class="game-actions">
+                <button type="button" class="action-button" id="hint-button">
+                  ✳ &nbsp; Show hint</button
+                ><button
+                  type="button"
+                  class="action-button"
+                  id="restart-button"
+                >
+                  ↺ &nbsp; Restart</button
+                ><button type="button" class="action-button" id="new-button">
+                  ↗ &nbsp; New maze</button
+                ><button type="button" class="action-button" id="export-maze">
+                  ↓ &nbsp; Export this maze for the C++ solver
+                </button>
+              </div>
+            </section>
+          </aside>
+        </div>
+        <div class="game-under">
+          <p id="game-status" role="status" aria-live="polite">
+            A new maze is ready. Make your first move!
+          </p>
+          <a href="behind.html#logic" class="text-link"
+            >Curious how the maze is made? <span aria-hidden="true">→</span></a
+          >
+        </div>
+        <section class="records-section">
+          <div>
+            <span class="small-caps">YOUR LITTLE TRAIL</span>
+            <h2>Past runs<span class="period">.</span></h2>
+            <p>
+              Saved locally on this device, not on a server. Want to analyze
+              them with Python? Export the JSON file.
+            </p>
+          </div>
+          <div class="records-right">
+            <div id="recent-runs" class="recent-runs">
+              <p class="empty-runs">
+                No completed runs yet. Your first one starts above ↗
+              </p>
+            </div>
+            <button
+              type="button"
+              class="text-link export-button"
+              id="export-runs"
+              disabled
+            >
+              Export runs as JSON ↓
+            </button>
+          </div>
+        </section>
+      </main>
+      <footer class="site-footer">
+        <span
+          >MAZE / 01
+          <span class="footer-muted">— A semester one side quest</span></span
+        ><span
+          >Made to learn, not to pretend I know it all.
+          <span aria-hidden="true">✳</span></span
+        ><a href="behind.html#honesty">About the process ↗</a>
+      </footer>
+    </div>
+  </body>
+</html>

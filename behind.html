@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#131724" />
+    <meta
+      name="description"
+      content="The story, logic, tools, and honest build notes behind a semester-one maze project."
+    />
+    <title>Behind the Build — Maze / 01</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <script defer src="assets/vendor/jquery-3.7.1.min.js"></script>
+    <script defer src="assets/js/site.js"></script>
+  </head>
+  <body class="behind-page">
+    <div class="site-shell">
+      <header class="site-header">
+        <a class="brand" href="index.html" aria-label="Maze 01 home"
+          ><span class="brand-symbol" aria-hidden="true">↗</span
+          ><span>MAZE<span class="brand-slash">/</span>01</span></a
+        ><button
+          class="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          aria-label="Open menu"
+        >
+          <span></span><span></span>
+        </button>
+        <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+          <a href="index.html">01 / Home</a><a href="play.html">02 / Play</a
+          ><a class="active" aria-current="page" href="behind.html"
+            >03 / Behind the build</a
+          >
+        </nav>
+        <span class="header-tag"
+          >SEM 1 FINAL PROJECT <span class="live-dot"></span
+        ></span>
+      </header>
+      <main>
+        <div class="page-kicker">
+          <a href="index.html">← BACK TO HOME</a><span>03 / THE NOTEBOOK</span>
+        </div>
+        <section class="notes-hero">
+          <div>
+            <div class="eyebrow">
+              <span class="eyebrow-line"></span> WHAT'S BEHIND THE SCREEN
+            </div>
+            <h1>Not just a game.<br /><em>A learning log.</em></h1>
+            <p>
+              Here's the idea, the logic, the files, and the honest version of
+              how this project came together. No magic “I built everything
+              overnight” story.
+            </p>
+          </div>
+          <div class="notes-sticker" aria-hidden="true">
+            <span>VIMAL<br />PROJECT COUNT</span><strong>01</strong
+            ><span>WORK IN<br />PROGRESS ↗</span>
+          </div>
+        </section>
+        <div class="notes-index">
+          <span>ON THIS PAGE</span><a href="#why">01 / Why a maze</a
+          ><a href="#logic">02 / The logic</a
+          ><a href="#stack">03 / What each subject does</a
+          ><a href="#honesty">04 / AI & my work</a>
+        </div>
+        <section id="why" class="notes-section">
+          <div class="notes-heading">
+            <span class="section-number">01 / THE WHY</span>
+            <h2>Why <em>a maze?</em></h2>
+          </div>
+          <div class="notes-body">
+            <p>
+              At the end of semester one, I wanted my final project to be
+              something a faculty member could actually use instead of just
+              scroll through. A maze is easy to understand as a player, but
+              interesting to explain as a programmer: cells, walls, random
+              generation, movement, and a pathfinding hint.
+            </p>
+            <div class="pull-quote">
+              “The game is simple on purpose. The thinking behind it is the
+              interesting part.”
+            </div>
+            <p>
+              The browser game is the main project. There are also two companion
+              tools in the repository: a C++ maze solver to practice classes and
+              a Python/NumPy script to look at exported run data. They are
+              separate programs, not secretly running on GitHub Pages.
+            </p>
+          </div>
+        </section>
+        <section id="logic" class="notes-section">
+          <div class="notes-heading">
+            <span class="section-number">02 / THE LOGIC</span>
+            <h2>Okay, but <em>how?</em></h2>
+          </div>
+          <div class="notes-body">
+            <div class="logic-intro">
+              <span class="logic-doodle" aria-hidden="true"
+                >┌─┐<br />│↘│<br />└─┘</span
+              >
+              <p>
+                Each square is a <strong>cell</strong>. A cell keeps track of
+                four walls: north, east, south and west. The player can cross an
+                edge only when its wall has been removed.
+              </p>
+            </div>
+            <div class="logic-steps">
+              <article>
+                <span>01</span>
+                <div>
+                  <h3>Carve the maze</h3>
+                  <p>
+                    Start with every wall closed. Pick an unvisited neighboring
+                    cell, remove the wall between them, and keep walking. If
+                    there are no unvisited neighbors, backtrack. This is
+                    <strong>randomized depth-first search</strong>.
+                  </p>
+                </div>
+              </article>
+              <article>
+                <span>02</span>
+                <div>
+                  <h3>Move through it</h3>
+                  <p>
+                    Arrow keys, WASD, swipe, and on-screen buttons all call the
+                    same movement function. It checks the wall, updates the
+                    player's cell, and counts a step only when the move is
+                    valid.
+                  </p>
+                </div>
+              </article>
+              <article>
+                <span>03</span>
+                <div>
+                  <h3>Show a hint</h3>
+                  <p>
+                    To find the shortest route from where you stand to the exit,
+                    the game explores reachable cells layer by layer. That's
+                    <strong>breadth-first search</strong>. The resulting route
+                    appears briefly on the board.
+                  </p>
+                </div>
+              </article>
+              <article>
+                <span>04</span>
+                <div>
+                  <h3>Remember a run</h3>
+                  <p>
+                    On reaching the exit, time, steps, and hints are saved in
+                    <code>localStorage</code>. That's a personal record on one
+                    browser — <strong>not</strong> an online leaderboard.
+                  </p>
+                </div>
+              </article>
+            </div>
+            <div class="logic-note">
+              <span>WHY THERE'S ALWAYS AN EXIT ↗</span>
+              <p>
+                Carving visits every cell and connects each newly visited cell
+                to the maze. So there is a route between the start and finish.
+                The hint can find it too.
+              </p>
+            </div>
+          </div>
+        </section>
+        <section id="stack" class="notes-section">
+          <div class="notes-heading">
+            <span class="section-number">03 / THE TOOLBOX</span>
+            <h2>What I <em>used.</em></h2>
+          </div>
+          <div class="notes-body">
+            <p class="stack-intro">
+              Different subjects have different jobs here. I didn't force
+              server-side code into a static website just to tick a box.
+            </p>
+            <div class="stack-list">
+              <div>
+                <span>HTML</span>
+                <p>
+                  Three pages with navigation, game controls and build notes.
+                </p>
+              </div>
+              <div>
+                <span>CSS</span>
+                <p>
+                  Responsive layouts, visual style, transitions and
+                  reduced-motion support.
+                </p>
+              </div>
+              <div>
+                <span>JavaScript</span>
+                <p>
+                  Maze generation, canvas drawing, keyboard/touch input, timer
+                  and pathfinding.
+                </p>
+              </div>
+              <div>
+                <span>jQuery</span>
+                <p>
+                  A local library copy helps handle the mobile menu and
+                  interactive page details.
+                </p>
+              </div>
+              <div>
+                <span>C++ / OOP</span>
+                <p>
+                  A separate <code>Maze</code> class and breadth-first-search
+                  CLI solver for exported mazes.
+                </p>
+              </div>
+              <div>
+                <span>Python + NumPy</span>
+                <p>
+                  A separate script summarizes JSON run data exported from the
+                  game.
+                </p>
+              </div>
+              <div>
+                <span>PHP</span>
+                <p>
+                  Studied this semester, but deliberately not used here: GitHub
+                  Pages can't execute PHP.
+                </p>
+              </div>
+            </div>
+            <p class="stack-endnote">
+              The C++ and Python tools run locally from the GitHub repo. The
+              website itself works on GitHub Pages with no backend.
+            </p>
+          </div>
+        </section>
+        <section id="honesty" class="notes-section honesty-section">
+          <div class="notes-heading">
+            <span class="section-number">04 / HONEST BUILD NOTES</span>
+            <h2>What was me.<br /><em>What was AI.</em></h2>
+          </div>
+          <div class="notes-body">
+            <div class="honesty-card">
+              <div class="honesty-top">
+                <span>TRANSPARENCY NOTE</span>
+              </div>
+              <p>
+                <strong>Where this first version stands:</strong> I chose the
+                maze-game idea, the Sem 1 scope, and asked for a multi-page
+                website with animation and a real explanation of its logic. AI
+                helped turn that brief into the initial site design, text and
+                working code, including the browser game and companion scripts.
+              </p>
+              <p>
+                <strong>What I need to do next:</strong> Play-test it, read the
+                code, change the parts I want to make my own, record bugs I
+                fixed, and replace these notes with a specific account of my
+                work. I should be able to explain the maze generator, hint
+                search, storage, and each tool during my demo.
+              </p>
+              <p class="honesty-emphasis">
+                I will be honest about how I used AI and clearly distinguish between AI-assisted work and my own contributions. Rather than claiming an arbitrary percentage of ownership, I will focus on demonstrating my understanding, the changes I made, the problems I solved, and the knowledge I gained while developing the project.
+              </p>
+            </div>
+          </div>
+        </section>
+        <section class="notes-outro">
+          <div>
+            <span class="small-caps">THAT'S THE STORY SO FAR</span>
+            <h2>Now try to<br /><em>escape it.</em></h2>
+          </div>
+          <a href="play.html" class="button button-primary"
+            >Play the maze <span aria-hidden="true">↗</span></a
+          >
+        </section>
+      </main>
+      <footer class="site-footer">
+        <span
+          >MAZE / 01
+          <span class="footer-muted">— A semester one side quest</span></span
+        ><span
+          >Made to learn, not to pretend I know it all.
+          <span aria-hidden="true">✳</span></span
+        ><a href="behind.html#honesty">About the process ↗</a>
+      </footer>
+    </div>
+  </body>
+</html>

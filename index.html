@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#131724" />
+    <meta
+      name="description"
+      content="A little maze game made as a semester-one learning project. Play it, then see how it works."
+    />
+    <title>Maze / 01 — A Semester One Side Quest</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <script defer src="assets/vendor/jquery-3.7.1.min.js"></script>
+    <script defer src="assets/js/site.js"></script>
+  </head>
+  <body class="home-page">
+    <div class="site-shell">
+      <header class="site-header">
+        <a class="brand" href="index.html" aria-label="Maze 01 home"
+          ><span class="brand-symbol" aria-hidden="true">↗</span
+          ><span>MAZE<span class="brand-slash">/</span>01</span></a
+        >
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          aria-label="Open menu"
+        >
+          <span></span><span></span>
+        </button>
+        <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+          <a class="active" aria-current="page" href="index.html">01 / Home</a>
+          <a href="play.html">02 / Play</a>
+          <a href="behind.html">03 / Behind the build</a>
+        </nav>
+        <span class="header-tag"
+          >SEM 1 FINAL PROJECT <span class="live-dot"></span
+        ></span>
+      </header>
+
+      <main>
+        <section class="hero" aria-labelledby="hero-heading">
+          <div class="hero-copy">
+            <div class="eyebrow">
+              <span class="eyebrow-line"></span> ONE SEMESTER. ONE PLAYABLE
+              IDEA.
+            </div>
+            <h1 id="hero-heading">
+              I got a little<br /><em>lost</em> learning<br />to code<span
+                class="period"
+                >.</span
+              >
+            </h1>
+            <p class="hero-description">
+              So I made a maze about finding a way through. A small game built
+              from the things I learned in my first semester — and a place to
+              show the thinking behind it.
+            </p>
+            <p class="hero-byline">
+              A PROJECT BY <strong>VIMAL RAJ MANDAL</strong> <span> / SEM 01</span>
+            </p>
+            <div class="hero-actions">
+              <a href="play.html" class="button button-primary"
+                >Play the maze <span aria-hidden="true">↗</span></a
+              ><a href="behind.html" class="text-link"
+                >See how I built it <span aria-hidden="true">→</span></a
+              >
+            </div>
+            <div class="hero-footnote">
+              <span class="asterisk">✳</span> No account. No download. Just find
+              the exit.
+            </div>
+          </div>
+          <div
+            class="hero-art"
+            aria-label="Illustration of a maze with a winding route from start to finish"
+            role="img"
+          >
+            <div class="art-top">
+              <span>FIG. 01 — THE IDEA</span><span>START → FINISH</span>
+            </div>
+            <svg
+              class="maze-illustration"
+              viewBox="0 0 500 460"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <rect
+                x="30"
+                y="22"
+                width="440"
+                height="416"
+                rx="15"
+                fill="#1c2630"
+                stroke="#647777"
+                stroke-width="2"
+              />
+              <g
+                stroke="#829e98"
+                stroke-width="5"
+                stroke-linecap="round"
+                fill="none"
+                opacity=".85"
+              >
+                <path
+                  d="M72 67H179M214 67H430M72 67V177M430 67V171M72 208V394H430V277M430 205V243"
+                />
+                <path d="M110 67V113H163V145H112V203H161V251H110V346H164" />
+                <path d="M210 67V110H257V156H211V203H256V249H212V300H166V346" />
+                <path
+                  d="M302 67V113H345V158H299V205H343V251H303V298H255V347H211"
+                />
+                <path
+                  d="M386 67V113H344M430 158H386V205H430M385 250V297H344V348H386V394"
+                />
+                <path
+                  d="M164 145H211M164 250H212M110 299H166M256 110H301M257 249H302M211 347V394M299 347H345"
+                />
+              </g>
+              <path
+                d="M70 180H90V222H137V272H186V326H235V273H279V226H364V180H410V225"
+                fill="none"
+                stroke="#ddf28a"
+                stroke-width="9"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-dasharray="1 16"
+              />
+              <circle cx="70" cy="180" r="19" fill="#ddf28a" />
+              <circle cx="70" cy="180" r="6" fill="#17221d" />
+              <circle cx="410" cy="225" r="21" fill="#f8a58c" />
+              <path
+                d="m402 225 6 6 11-14"
+                fill="none"
+                stroke="#18202a"
+                stroke-width="4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <text
+                x="47"
+                y="151"
+                fill="#ddf28a"
+                font-size="12"
+                font-family="monospace"
+              >
+                YOU
+              </text>
+              <text
+                x="387"
+                y="267"
+                fill="#f8a58c"
+                font-size="12"
+                font-family="monospace"
+              >
+                EXIT
+              </text>
+            </svg>
+            <div class="art-bottom">
+              <span>✳ A route exists. You just have to find it.</span
+              ><span class="art-coordinate">X:01 / Y:01</span>
+            </div>
+            <div class="art-sticker" aria-hidden="true">
+              built<br />to be<br />played <span>↘</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="marquee-strip" aria-label="Project subjects">
+          <div class="marquee-inner">
+            HTML <span>✳</span> CSS <span>✳</span> JAVASCRIPT
+            <span>✳</span> JQUERY <span>✳</span> C++ / OOP <span>✳</span> PYTHON
+            + NUMPY <span>✳</span> PROBLEM SOLVING <span>✳</span> HTML
+            <span>✳</span> CSS <span>✳</span> JAVASCRIPT <span>✳</span>
+          </div>
+        </section>
+
+        <section
+          class="section-pad story-section"
+          aria-labelledby="story-heading"
+        >
+          <div class="section-label">
+            <span>01 / THE STORY</span><span>END OF SEMESTER ONE ↗</span>
+          </div>
+          <div class="story-grid">
+            <h2 id="story-heading">
+              A final project that<br /><span class="serif-italic"
+                >actually moves.</span
+              >
+            </h2>
+            <div class="story-copy">
+              <p>
+                Semester one gave me the basics: structure with HTML, styling
+                with CSS, interactivity with JavaScript and jQuery, plus the
+                first steps into Python, NumPy, C++ and object-oriented
+                thinking.
+              </p>
+              <p>
+                Instead of putting those topics into another static “about me”
+                page, I wanted something you could try. This maze is the browser
+                part; the repo also has a small C++ solver and a Python/NumPy
+                run analyzer.
+              </p>
+              <a class="text-link" href="behind.html"
+                >Read the build notes <span aria-hidden="true">→</span></a
+              >
+            </div>
+          </div>
+        </section>
+
+        <section
+          class="section-pad features-section"
+          aria-labelledby="features-heading"
+        >
+          <div class="section-label">
+            <span>02 / WHAT'S INSIDE</span
+            ><span>THREE GOOD REASONS TO CLICK PLAY</span>
+          </div>
+          <h2 class="section-heading" id="features-heading">
+            Simple to play.<br /><span class="serif-italic"
+              >Fun to figure out.</span
+            >
+          </h2>
+          <div class="feature-grid">
+            <article class="feature-card">
+              <span class="feature-number">01 —</span>
+              <div class="feature-icon icon-lime" aria-hidden="true">↝</div>
+              <h3>A fresh maze, every time</h3>
+              <p>
+                The game builds a new maze in your browser. No pre-drawn route,
+                and no two random seeds need to look alike.
+              </p>
+            </article>
+            <article class="feature-card">
+              <span class="feature-number">02 —</span>
+              <div class="feature-icon icon-peach" aria-hidden="true">◷</div>
+              <h3>Race your own best</h3>
+              <p>
+                Pick a difficulty, keep an eye on the clock, and try to beat
+                your personal record on this device.
+              </p>
+            </article>
+            <article class="feature-card">
+              <span class="feature-number">03 —</span>
+              <div class="feature-icon icon-purple" aria-hidden="true">⌁</div>
+              <h3>Get a little help</h3>
+              <p>
+                Stuck? A hint traces the shortest route for a moment. There's a
+                little graph-search lesson hiding in there.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section class="bottom-cta">
+          <div>
+            <span class="small-caps">READY WHEN YOU ARE</span>
+            <h2>Let's find the <em>exit.</em></h2>
+            <p>Arrow keys, WASD, swipe, or on-screen buttons. Your call.</p>
+          </div>
+          <a href="play.html" class="button button-dark"
+            >Enter the maze <span aria-hidden="true">↗</span></a
+          >
+        </section>
+      </main>
+      <footer class="site-footer">
+        <span
+          >MAZE / 01
+          <span class="footer-muted">— A semester one side quest</span></span
+        ><span
+          >Made to learn, not to pretend I know it all.
+          <span aria-hidden="true">✳</span></span
+        ><a href="behind.html#honesty">About the process ↗</a>
+      </footer>
+    </div>
+  </body>
+</html>
