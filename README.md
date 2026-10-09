@@ -16,7 +16,7 @@ The website is completely static, requires no build process, and can be hosted u
 
 The project also includes a C++ maze solver and a Python data analyzer that work with files exported from the game.
 
-> **Student Name:** Your Name
+> **Student Name:** VIMAL RAJ MANDAL
 > **Course:** BSc Information Technology
 > **Semester:** 1
 > **Project Type:** Academic Mini Project
